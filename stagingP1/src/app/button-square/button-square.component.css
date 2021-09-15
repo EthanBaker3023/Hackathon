@@ -1,0 +1,46 @@
+
+.btn1{
+    width: 360px;
+    height: 50px;
+    margin-left: 350px;
+    margin-right: 200px;
+    background-color: #093672;
+}
+
+.btn2{
+    width: 60px;
+    height: 200px;
+    margin-left: 350px;
+    margin-right: 200px;
+    background-color: #4CAF50;
+}
+
+.btn3{
+    width: 60px;
+    height: 200px;
+    margin-left: 40px;
+    margin-right: 500px;
+    background-color: #ecdb3e;
+}
+
+.btn4{
+    width: 360px;
+    height: 50px;
+    margin-left: 350px;
+    margin-right: 200px;
+    background-color: #ba0000;
+}
+
+.btn1:hover{
+    background-color: orange;
+}
+
+.btn2:hover{
+    background-color: orange;
+}
+.btn3:hover{
+    background-color: orange;
+}
+.btn4:hover{
+    background-color: orange;
+}
