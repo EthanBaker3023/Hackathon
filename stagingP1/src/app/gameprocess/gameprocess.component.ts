@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 
+
 @Component({
   selector: 'app-gameprocess',
   templateUrl: './gameprocess.component.html',
@@ -29,27 +30,38 @@ export class GameprocessComponent implements OnInit {
     this.gameOver = false;
     this.gameStart = true;
     while(this.gameOver == false){
+      this.SimonAdd();
       this.SimonSays();
       //TODO: add something to display to user that it is there turn
       this.UserTurn();
+      if(this.simonSequence.length == 3){ //just for testing
+        this.gameOver = true;
+      }
     }
   }
 
-  // adds a random number to simon sequence array, then loops over the array assigning each element to this.random for 1 second (this.random will correspond with a button lighting up)
-  SimonSays() {
+  // adds a random number to simon sequence array,
+  SimonAdd(){
     var x = Math.floor(Math.random() * 4) + 1;
     this.simonSequence?.push(x);
+    console.log(this.simonSequence)
+  }
 
+  //  loops over the array assigning each element to this.random for 1 second (this.random will correspond with a button lighting up)
+  SimonSays() {
+    let count = 0;
     this.simonSequence?.forEach(element => {
       let say = setInterval(() => {
         this.random = element;
+        console.log(this.random);
+        count++;
+        if(this.simonSequence?.length == count){
+          count = 0;
+          clearInterval(say);
+        }
       },1000)
-      if(this.simonSequence?.length == element){
-        clearInterval(say);
-      }
     })
   }
-
   
   UserTurn(){
     // for(let i = 0; i <= this.simonSequence?.length; i++){
