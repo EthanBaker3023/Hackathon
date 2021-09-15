@@ -1,5 +1,6 @@
 
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { soundMap } from '../model/soundMapper';
 @Component({
   selector: 'app-Button',
   templateUrl: './Button.component.html',
@@ -11,13 +12,13 @@ export class ButtonComponent implements OnInit {
 
   @Input() buttonId: number | null = null;
   @Output() selectedEvent = new EventEmitter<number>();
+  audioPath: string = soundMap[1];
 
   ngOnInit() {
   }
 
   select() {
     let audio = <HTMLVideoElement>document.querySelector("#sound1");
-    console.log(audio);
     if (audio) {
       audio.play();
     }
