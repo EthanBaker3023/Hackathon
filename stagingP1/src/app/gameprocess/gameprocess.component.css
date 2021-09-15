@@ -1,0 +1,25 @@
+.container {
+    position: fixed;
+    left: 750px;
+    padding: 0;
+    margin: 0;
+}
+
+.left {
+    display: inline-block; 
+}
+
+.right {
+    display: inline-block; 
+    margin-left: 15px;
+}
+
+.button {
+    font-size: 20px;
+    margin-left: 177px;
+}
+
+.notice {
+    font-size: 20px;
+    margin-left: 145px;
+}

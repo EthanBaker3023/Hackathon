@@ -1,4 +1,24 @@
 
-<button class="button" (click)="startGame()">Start</button>
-
-<app-Button></app-Button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <button *ngIf = 'gameStart == false'  class="button" (click)="startGame()">Start</button>
+    <br>
+    <br>
+    <div class="left">
+        <app-Button></app-Button>
+        <app-Button></app-Button>
+    </div>
+    <div class="right">
+        <app-Button></app-Button>
+        <app-Button></app-Button>
+    </div>
+    <p class="notice" *ngIf = 'userTurn == false'>Watch Carefully</p>
+    <p class="notice" *ngIf = 'userTurn == true'>Your Turn</p>
+</div>
