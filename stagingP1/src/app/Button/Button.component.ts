@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'stream';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-Button',
@@ -10,13 +9,18 @@ export class ButtonComponent implements OnInit {
 
   constructor() { }
 
-  @Input() buttonId? = null;
-  @Output() selectedEvent = new EventEmitter();
+  @Input() buttonId: number | null = null;
+  @Output() selectedEvent = new EventEmitter<number>();
 
   ngOnInit() {
   }
 
   select() {
+    let audio = <HTMLVideoElement>document.querySelector("#sound1");
+    console.log(audio);
+    if (audio) {
+      audio.play();
+    }
     if (this.buttonId) {
       this.selectedEvent.emit(this.buttonId)
     }
