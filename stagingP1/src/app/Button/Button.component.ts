@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'stream';
+//import { EventEmitter } from 'stream';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-Button',
