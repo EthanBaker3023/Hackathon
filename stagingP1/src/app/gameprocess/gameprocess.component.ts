@@ -12,7 +12,7 @@ export class GameprocessComponent implements OnInit {
     gameOver: boolean = false;
     gameStart: boolean = false;
     userTurn: boolean = false;
-    simonSequence?: number[]; //sequence of numbers that simon said
+    simonSequence: number[] = [1]; //sequence of numbers that simon said
     userSequence?: number[];
     @Input() userChoice?: number; //number from the button the user pressed
   
@@ -23,14 +23,15 @@ export class GameprocessComponent implements OnInit {
 
   //initializes variables and runs functions necessary for game
   startGame() {
+    //this.simonSequence = [1,2,3,4];  // for testing SimonSays()
     this.simonSequence = [];
     this.userSequence = [];
     this.gameOver = false;
     this.gameStart = true;
+    //this.SimonSays(); //testing SimonSays()
     while(this.gameOver == false){
       this.SimonAdd();
       this.SimonSays();
-      // //TODO: add something to display to user that it is there turn
       this.UserTurn();
     }
   }
@@ -42,20 +43,17 @@ export class GameprocessComponent implements OnInit {
     console.log(this.simonSequence)
   }
 
-  //  loops over the array assigning each element to this.random for 1 second (this.random will correspond with a button lighting up)
+  // loops over the array assigning each element to this.random for 1 second (this.random will correspond with a button lighting up)
   SimonSays(){
     let count = 0;
-    this.simonSequence?.forEach(element => {
-      let say = setInterval(() => {
-        this.random = element;
-        console.log(this.random);
-        count++;
-        if(this.simonSequence?.length == count){
-          count = 0;
-          clearInterval(say);
-        }
-      },1000)
-  })
+    let say = setInterval(() => {
+      this.random = this.simonSequence[count];
+      console.log(this.random);
+      count++;
+      if(this.simonSequence[count] == undefined){
+        clearInterval(say);
+      }
+    },3000)
 }
 
   UserTurn(){
