@@ -26,3 +26,35 @@ button {
 .yellow {
   background-color: yellow;
 }
+
+#button1 {
+  background-color: red;
+  min-height: 30px;
+  width: 50px;
+}
+
+@keyframes flash-red {
+  0% {
+    background-color:red;
+    box-shadow: 0 0 5px red;
+  }
+  25% {
+    background-color: rgb(255, 75, 75);
+    box-shadow: 0 0 20px rgb(255, 75, 75);
+  }
+  75% {
+    background-color: rgb(255, 121, 121);
+    box-shadow: 0 0 5px rgb(255, 121, 121);
+  }
+  100% {
+    background-color: red;
+    box-shadow: 0 0 5px red;
+  }
+}
+
+.select-b1 {
+  animation-name: flash-red;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}

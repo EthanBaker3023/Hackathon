@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
 
   isActive!: boolean;
   style: string | undefined;
+  classList: string | undefined;
 
   constructor() { }
 
@@ -31,8 +32,18 @@ export class ButtonComponent implements OnInit {
 
   select() {
     let audio = <HTMLVideoElement>document.querySelector("#sound1");
+    let button = document.querySelector("#button1");
+    audio.play();
+    setTimeout(() => { this.classList = ""; audio.pause(); audio.currentTime = 0; }, 1000);
+    this.classList = "select-b1";
+    //button?.addEventListener('animationend', () => {
+      //button?.classList.toggle('select-b1');
+    //});
+    //button?.classList.toggle("select-b1");
+
+    console.log(button);
     if (audio) {
-      audio.play();
+
     }
     if (this.buttonId) {
       this.selectedEvent.emit(this.buttonId)
