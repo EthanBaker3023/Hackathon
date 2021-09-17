@@ -15,6 +15,7 @@ export class AppComponent {
   simonSequence: number[] = []; //sequence of numbers that simon said
   userSequence: number[] = [];
   userChoice?: number; //number from the button the user pressed
+  userSpot: number = 0;
 
   color!: string;
   isActive!: boolean;
@@ -40,11 +41,11 @@ export class AppComponent {
     this.userSequence = [];
     this.gameOver = false;
     this.gameStart = true;
-    if(!this.gameOver){
-      this.SimonAdd();
-      this.SimonSays(); //testing SimonSays()
-      this.UserTurn();
-    }
+    //if(!this.gameOver){
+    this.SimonAdd();
+    this.SimonSays(); //testing SimonSays()
+      //this.UserTurn();
+    //}
   }
 
   // adds a random number to simon sequence array,
@@ -65,7 +66,7 @@ export class AppComponent {
       if(this.simonSequence[count] == undefined){
         clearInterval(say);
       }
-    },2000)
+    },500)
   }
 
   UserTurn(){
@@ -79,8 +80,8 @@ export class AppComponent {
     //   }
     // }
 
-    //just for testing so doesn't run forever, userTurn should change gameOver to true when the user loses as in the commented out if statement above 
-    if(this.simonSequence?.length == 3){ 
+    //just for testing so doesn't run forever, userTurn should change gameOver to true when the user loses as in the commented out if statement above
+    if(this.simonSequence?.length == 3){
       this.gameOver = true;
     }
 
@@ -96,17 +97,26 @@ export class AppComponent {
   }
 
   blink(temp: number)
-  {   
+  {
     let audio = new Audio();
-
+    console.log("number " + this.simonSequence[this.userSpot]);
     switch(temp)
     {
       case 1 : {
         this.style1 = "white";
         setTimeout(() => this.style1 = "red", 200);
-
-        audio.src = "/assets/sound/a.mp3";
-        console.log("a.mp3 playing");
+        if(temp == this.simonSequence[this.userSpot])
+        {
+          audio.src = "/assets/sound/a.mp3";
+          console.log("a.mp3 playing");
+          this.userSpot++;
+        } else {
+          audio.src = "/assets/sound/fail.mp3";
+          console.log("fail.mp3 playing");
+          this.simonSequence = [];
+        }
+        //audio.src = "/assets/sound/a.mp3";
+        //console.log("a.mp3 playing");
         if (audio) {
           audio.play();
         }
@@ -116,8 +126,16 @@ export class AppComponent {
         this.style2 = "white";
         setTimeout(() => this.style2 = "blue", 200);
 
-        audio.src = "/assets/sound/b.mp3";
-        console.log("b.mp3 playing");
+        if(temp == this.simonSequence[this.userSpot])
+        {
+          audio.src = "/assets/sound/b.mp3";
+          console.log("b.mp3 playing");
+          this.userSpot++;
+        } else {
+          audio.src = "/assets/sound/fail.mp3";
+          console.log("fail.mp3 playing");
+          this.simonSequence = [];
+        }
         if (audio) {
           audio.play();
         }
@@ -127,8 +145,16 @@ export class AppComponent {
         this.style3 = "white";
         setTimeout(() => this.style3 = "green", 200);
 
-        audio.src = "/assets/sound/c.mp3";
-        console.log("c.mp3 playing");
+        if(temp == this.simonSequence[this.userSpot])
+        {
+          audio.src = "/assets/sound/c.mp3";
+          console.log("c.mp3 playing");
+          this.userSpot++;
+        } else {
+          audio.src = "/assets/sound/fail.mp3";
+          console.log("fail.mp3 playing");
+          this.simonSequence = [];
+        }
         if (audio) {
           audio.play();
         }
@@ -138,18 +164,33 @@ export class AppComponent {
           this.style4 = "white";
           setTimeout(() => this.style4 = "yellow", 200);
 
+          if(temp == this.simonSequence[this.userSpot])
+        {
           audio.src = "/assets/sound/d.mp3";
           console.log("d.mp3 playing");
+          this.userSpot++;
+        } else {
+          audio.src = "/assets/sound/fail.mp3";
+          console.log("fail.mp3 playing");
+          this.simonSequence = [];
+        }
           if (audio) {
             audio.play();
           }
         break;
-      } 
+      }
+    }
+    if(this.userSpot >= this.simonSequence.length)
+    {
+      console.log("Adding another");
+      this.userSpot = 0;
+      this.SimonAdd();
+      setTimeout(() => this.SimonSays(), 1000);
     }
   }
 
   blinkPattern()
-  {  
+  {
     let audio = new Audio();
 
       switch(this.random)
@@ -193,7 +234,7 @@ export class AppComponent {
           audio.play();
         }
         break;
-      } 
+      }
     }
   }
 
