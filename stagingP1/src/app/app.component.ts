@@ -67,6 +67,7 @@ export class AppComponent {
         clearInterval(say);
       }
     },500)
+    setTimeout(() => this.userTurn = true, 500 * (this.simonSequence.length + 1));
   }
 
   UserTurn(){
@@ -114,6 +115,8 @@ export class AppComponent {
           audio.src = "/assets/sound/fail.mp3";
           console.log("fail.mp3 playing");
           this.simonSequence = [];
+          this.gameOver = true;
+          setTimeout(() => this.gameOver = false, 1000);
         }
         //audio.src = "/assets/sound/a.mp3";
         //console.log("a.mp3 playing");
@@ -135,6 +138,8 @@ export class AppComponent {
           audio.src = "/assets/sound/fail.mp3";
           console.log("fail.mp3 playing");
           this.simonSequence = [];
+          this.gameOver = true;
+          setTimeout(() => this.gameOver = false, 1000);
         }
         if (audio) {
           audio.play();
@@ -154,6 +159,8 @@ export class AppComponent {
           audio.src = "/assets/sound/fail.mp3";
           console.log("fail.mp3 playing");
           this.simonSequence = [];
+          this.gameOver = true;
+          setTimeout(() => this.gameOver = false, 1000);
         }
         if (audio) {
           audio.play();
@@ -173,6 +180,8 @@ export class AppComponent {
           audio.src = "/assets/sound/fail.mp3";
           console.log("fail.mp3 playing");
           this.simonSequence = [];
+          this.gameOver = true;
+          setTimeout(() => this.gameOver = false, 1000);
         }
           if (audio) {
             audio.play();
@@ -184,6 +193,7 @@ export class AppComponent {
     {
       console.log("Adding another");
       this.userSpot = 0;
+      this.userTurn = false;
       this.SimonAdd();
       setTimeout(() => this.SimonSays(), 1000);
     }

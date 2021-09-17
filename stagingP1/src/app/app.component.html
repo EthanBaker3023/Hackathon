@@ -6,9 +6,9 @@
 
 <!--test button for sound it works-->
 <!-- <app-Button [buttonId]=1></app-Button> -->
-   
 
-<!--   
+
+<!--
 <app-button-square></app-button-square> -->
 
 
@@ -22,6 +22,7 @@
 <br>
 <div class="container">
     <button style = "font-size: 20px; margin-left: 177px;" *ngIf = 'gameStart == false' (click)="startGame()">Start</button>
+
     <br>
     <br>
     <div class="left">
@@ -34,4 +35,5 @@
     </div>
     <p class="notice" *ngIf = 'userTurn == false'>Watch Carefully</p>
     <p class="notice" *ngIf = 'userTurn == true'>Your Turn</p>
+    <p class="notice" *ngIf = 'gameOver'>Sorry, try again!</p>
 </div>
