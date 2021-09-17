@@ -1,4 +1,4 @@
-<app-gameprocess></app-gameprocess>
+<!-- <app-gameprocess></app-gameprocess> -->
 
 
 
@@ -10,3 +10,28 @@
 
 <!--   
 <app-button-square></app-button-square> -->
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <button style = "font-size: 20px; margin-left: 177px;" *ngIf = 'gameStart == false' (click)="startGame()">Start</button>
+    <br>
+    <br>
+    <div class="left">
+        <button id="button" class={{style1}} (click)="blink(1)"></button>
+        <button id="button" class={{style2}} (click)="blink(2)"></button>
+    </div>
+    <div class="right">
+        <button id="button" class={{style3}} (click)="blink(3)"></button>
+        <button id="button" class={{style4}} (click)="blink(4)"></button>
+    </div>
+    <p class="notice" *ngIf = 'userTurn == false'>Watch Carefully</p>
+    <p class="notice" *ngIf = 'userTurn == true'>Your Turn</p>
+</div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -12,8 +13,8 @@ export class GameprocessComponent implements OnInit {
     gameOver: boolean = false;
     gameStart: boolean = false;
     userTurn: boolean = false;
-    simonSequence: number[] = [1]; //sequence of numbers that simon said
-    userSequence?: number[];
+    simonSequence: number[] = []; //sequence of numbers that simon said
+    userSequence: number[] = [];
     @Input() userChoice?: number; //number from the button the user pressed
   
   constructor() { }
@@ -23,17 +24,12 @@ export class GameprocessComponent implements OnInit {
 
   //initializes variables and runs functions necessary for game
   startGame() {
-    //this.simonSequence = [1,2,3,4];  // for testing SimonSays()
-    this.simonSequence = [];
+    this.simonSequence = [1,2,3,4];  // for testing SimonSays()
+    //this.simonSequence = [];
     this.userSequence = [];
     this.gameOver = false;
     this.gameStart = true;
-    //this.SimonSays(); //testing SimonSays()
-    while(this.gameOver == false){
-      this.SimonAdd();
-      this.SimonSays();
-      this.UserTurn();
-    }
+    this.SimonSays(); //testing SimonSays()
   }
 
   // adds a random number to simon sequence array,
@@ -58,13 +54,14 @@ export class GameprocessComponent implements OnInit {
 
   UserTurn(){
     this.userTurn = true;
-    // for(let i = 0; i <= this.simonSequence?.length; i++){
-    //   var test = this.TestHit(this.userChoice, this.simonSequence?[i]);
-    //   if(test == false){
-    //     this.gameOver = true;
-    //     break;
-    //   }
-    // }
+
+    for(let i = 0; i <= this.simonSequence?.length; i++){
+      var test = this.TestHit(this.userChoice, this.simonSequence[i]);
+      if(test == false){
+        this.gameOver = true;
+        break;
+      }
+    }
 
     //just for testing so doesn't run forever, userTurn should change gameOver to true when the user loses as in the commented out if statement above 
     if(this.simonSequence?.length == 3){ 
